@@ -5,7 +5,7 @@ nw=datetime.time.strftime("%m/%d/%Y, %H:%M:%S")
 connection = sqlite3.connect('test.db')
 cursor = connection.cursor()
 
-
+ 
 def cr_tbl():
 	query ="""
 	CREATE TABLE IF NOT EXISTS articles (
@@ -44,8 +44,8 @@ print(artcl)
 
 #print(user)
 
-def get_article(text,title):
-		cursor.execute(f'SELECT * FROM articles WHERE text={text} or title={title}')
+def get_article(search):
+		cursor.execute(f"SELECT * FROM articles WHERE text LIKE '%{search}%' OR title LIKE '%{search}%' ")
 		connection.commit()
 
 
